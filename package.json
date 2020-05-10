@@ -1,0 +1,19 @@
+{
+  "name": "cosmeticstore",
+  "version": "1.0.0",
+  "description": "sandbox for playing with babel and webpack config files + React + Redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YRAL375/CosmeticStore.git"
+  },
+  "author": "Vadzim Voitkus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YRAL375/CosmeticStore/issues"
+  },
+  "homepage": "https://github.com/YRAL375/CosmeticStore#readme"
+}
