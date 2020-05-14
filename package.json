@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/YRAL375/CosmeticStore/issues"
   },
-  "homepage": "https://github.com/YRAL375/CosmeticStore#readme"
+  "homepage": "https://github.com/YRAL375/CosmeticStore#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-block-scoping": "^7.8.3",
+    "@babel/plugin-transform-classes": "^7.9.5",
+    "@babel/plugin-transform-template-literals": "^7.8.3",
+    "@babel/preset-env": "^7.9.6"
+  }
 }
