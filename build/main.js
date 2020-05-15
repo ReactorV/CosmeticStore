@@ -1,4 +1,6 @@
-"use strict";
+import "core-js/modules/es.array.flat";
+import "core-js/modules/es.array.unscopables.flat";
+import "core-js/modules/es.object.define-property";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10,6 +12,7 @@ var App = function App() {
   _defineProperty(this, "run", function () {
     var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'World';
     console.log("Hello ".concat(name));
+    console.log([1, 2, [3, 4]].flat());
   });
 };
 

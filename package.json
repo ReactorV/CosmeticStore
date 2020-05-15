@@ -23,6 +23,12 @@
     "@babel/plugin-transform-block-scoping": "^7.8.3",
     "@babel/plugin-transform-classes": "^7.9.5",
     "@babel/plugin-transform-template-literals": "^7.8.3",
-    "@babel/preset-env": "^7.9.6"
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
