@@ -1,7 +1,11 @@
-import Calc from './calc';
-import Log from './log';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import css from './main.scss';
 
-const calc = new Calc();
-const log = new Log();
+const App = () => {
+    return (
+        <div>Hello</div>
+    )
+};
 
-log.log(calc.add(1, 4, 5));
+ReactDOM.render(<App/>, document.getElementById('root'));
