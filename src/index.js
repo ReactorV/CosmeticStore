@@ -4,7 +4,7 @@ import css from './main.scss';
 
 const App = () => {
     return (
-        <div>Hello</div>
+        <div>Hello Webpack DevServer</div>
     )
 };
 

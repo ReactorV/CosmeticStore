@@ -1,21 +1,49 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = (env={}) => {
     const { mode = 'development'} = env;
 
     const isDev = mode === 'development';
     const isProd = mode === 'production';
 
+    const getStyleLoders = () => {
+        return [
+            isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'
+        ]
+    };
+
+    const getPlugins = () => {
+        const plugins = [
+            new HtmlWebpackPlugin({
+                title: 'CosmeticsStore',
+                template: 'public/index.html'
+            }),
+        ];
+
+        if (isProd) {
+            plugins.push(
+                new MiniCssExtractPlugin({
+                filename: '[name]-[hash:5].css'
+            }))
+        }
+
+        return plugins;
+    };
+
     return {
         mode: isDev ? 'development' : isProd && 'production',
+
+        output: {
+            filename: isProd ? 'main-[hash:3].js' : undefined
+        },
+
         module: {
             rules: [
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
-                    use: [
-                        {
-                            loader: 'babel-loader'
-                        }
-                    ]
+                    loader: 'babel-loader'
                 },
 
                 {
@@ -46,21 +74,20 @@ module.exports = (env={}) => {
 
                 {
                     test: /\.s[ca]ss$/,
-                    use: [
-                        { loader: 'style-loader' },
-                        { loader: 'css-loader' },
-                        { loader: 'sass-loader' }
-                    ]
+                    use: [...getStyleLoders(), 'sass-loader']
                 },
 
                 {
                     test: /\.css$/,
-                    use: [
-                        { loader: 'style-loader' },
-                        { loader: 'css-loader' }
-                    ]
+                    use: getStyleLoders()
                 },
             ]
+        },
+
+        plugins: getPlugins(),
+
+        devServer: {
+            open: true
         }
     }
 };
