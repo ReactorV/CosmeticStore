@@ -1,16 +1,11 @@
 import React from 'react';
 
-class cosmeticsStoreService extends React.PureComponent {
-    api = 'http://makeup-api.herokuapp.com/api/v1/products.json';
+class CosmeticsStoreService extends React.PureComponent {
+     getCosmetics = () => {
+        const api = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline';
 
-     getCosmetics = (api) => {
-        return fetch(api)
-            .then(response => {
-                debugger
-                return response
-            })
-            .catch(error => console.error(error))
-    }
+        return fetch(api);
+     }
 }
 
-export default cosmeticsStoreService;
+export default CosmeticsStoreService;

@@ -8,9 +8,9 @@ class CosmeticsList extends React.PureComponent {
     render() {
         const { cosmetics = [] } = this.props;
 
-        return cosmetics.map(item => {
+        return cosmetics.map((item, index) => {
             return (
-                <CosmeticsListItem item={item} />
+                <CosmeticsListItem item={item} key={index}/>
             );
         })
     }

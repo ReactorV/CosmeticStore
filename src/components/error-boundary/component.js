@@ -3,12 +3,16 @@ import React from 'react';
 import ErrorIndicator from '../error-indicator';
 
 class ErrorBoundary extends React.PureComponent {
-    state = {
-        hasError: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            hasError: false
+        };
+    }
 
     componentDidCatch() {
-        this.state({
+        this.setState({
             hasError: true
         });
     }

@@ -9,11 +9,12 @@ import ErrorBoundary from './components/error-boundary';
 import App from './components/app';
 import store from './store';
 
+const cosmeticsStoreService = new CosmeticsStoreService();
 
 ReactDOM.render(
     <Provider store={store}>
         <ErrorBoundary>
-            <CosmeticsStoreServiceProvider value={CosmeticsStoreService}>
+            <CosmeticsStoreServiceProvider value={cosmeticsStoreService}>
                 <Router>
                     <App />
                 </Router>

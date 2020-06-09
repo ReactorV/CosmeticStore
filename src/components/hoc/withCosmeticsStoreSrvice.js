@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { CosmeticsStoreServiceConsumer } from '../cosmetics-store-service-context';
 
 const withCosmeticsStoreService = () => (Wrapped) => {
@@ -5,11 +7,11 @@ const withCosmeticsStoreService = () => (Wrapped) => {
         return (
             <CosmeticsStoreServiceConsumer>
                 {
-                    (CosmeticsStoreService) => {
+                    (cosmeticsStoreService) => {
                         return (
                             <Wrapped
-                                props={...props}
-                                cosmeticsStoreService={CosmeticsStoreService}
+                                {...props}
+                                cosmeticsStoreService={cosmeticsStoreService}
                             />
                         );
                     }

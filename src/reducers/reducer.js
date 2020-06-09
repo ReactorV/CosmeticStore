@@ -1,12 +1,20 @@
 const initialState = {
-    cosmetics: 'Shampoo'
+    cosmetics: ['Shampoo'],
+    error: false
 };
 
 const reducer = (state = initialState, action) => {
+    debugger
     switch (action.type) {
-        case 'GET_COSMETICS':
+        case 'FETCH_COSMETICS_SUCCESS':
             return {
-                ...state
+                cosmetics: action.cosmetics
+            };
+
+        case 'FETCH_COSMETICS_ERROR':
+            return {
+                ...state,
+                error: action.error
             };
 
         default: return state;
