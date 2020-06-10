@@ -4,7 +4,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    debugger
     switch (action.type) {
         case 'FETCH_COSMETICS_SUCCESS':
             return {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.scss';
 
-const baseClassName = 'item';
+const baseClassName = 'cosmetics-list-item';
 
 class CosmeticsListItem extends React.PureComponent {
 
@@ -20,7 +20,6 @@ class CosmeticsListItem extends React.PureComponent {
             return (
                 <div className={classNames.component}>
                     <div>{item.brand}</div>
-                    <div>{item.category}</div>
                     <div>{item.description}</div>
                     <div>{item.price}</div>
                     <div>{item.apiImage}</div>
