@@ -22,7 +22,7 @@ class CosmeticsListItem extends React.PureComponent {
 
         const classNames = this.getClassNames();
 
-        //const iconOutput = this.renderIcon(classNames);
+        const itemPrice = `$${item.price}`;
 
             return (
                 <div className={classNames.component}>
@@ -34,7 +34,7 @@ class CosmeticsListItem extends React.PureComponent {
                             {item.brand}
                         </div>
                         <div className={classNames.price}>
-                            {item.price}
+                            {itemPrice}
                         </div>
                         <div className={classNames.description}>
                             {item.description}

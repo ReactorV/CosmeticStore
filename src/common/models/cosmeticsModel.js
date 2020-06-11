@@ -8,7 +8,7 @@ export default (data) => {
                 brand: get(item, 'brand') || '',
                 apiImage: get(item, 'api_featured_image') || '',
                 category: get(item, 'category') || '',
-                price: get(item, 'price') || 0,
+                price: get(item, 'price') || '',
                 description: get(item, 'description') || ''
             }
         });

@@ -7,7 +7,6 @@ import './index.scss';
 const baseClassName = 'cosmetics-list';
 
 class CosmeticsList extends React.PureComponent {
-
     getClassNames = () => {
         return {
             component: baseClassName
@@ -15,7 +14,7 @@ class CosmeticsList extends React.PureComponent {
     };
 
     render() {
-        const { cosmetics = [] } = this.props;
+        const { cosmetics = [], error } = this.props;
 
         const classNames = this.getClassNames();
 

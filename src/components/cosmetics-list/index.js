@@ -1,3 +1,1 @@
-import CosmeticsList from './component';
-
-export default CosmeticsList;
+export { default } from './component';

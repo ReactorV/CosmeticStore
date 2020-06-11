@@ -1,7 +1,7 @@
 .cosmetics-list-item {
     display: flex;
     padding: 20px;
-    width: 100%;
+    width: 70%;
     margin-bottom: 8px;
 
     &__icon {
@@ -19,5 +19,10 @@
         justify-content: space-around;
         margin-bottom: 12px;
         padding: 4px;
+    }
+
+    &__description {
+        min-width: 480px;
+        text-align: justify;
     }
 }

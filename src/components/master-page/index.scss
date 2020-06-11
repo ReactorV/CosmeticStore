@@ -1,0 +1,20 @@
+.header, .footer {
+    background-color: dimgray;
+    width: 100%;
+    padding: 20px 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}

@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 //import CartPage  from '../../pages/cart-page';
 import HomePage from '../../pages/homePage';
+import MasterPage from '../master-page';
 
 import './index.scss';
 
@@ -12,7 +13,7 @@ class App extends React.PureComponent {
                <Switch>
                    <Route
                        path="/"
-                       component={HomePage}
+                       component={this.getPageComponent(<HomePage />)}
                    />
                    <Route
                        path="/cart"
@@ -20,6 +21,14 @@ class App extends React.PureComponent {
                    />
                </Switch>
            );
+    }
+
+    getPageComponent = (component) => () => {
+        return (
+            <MasterPage>
+                {component}
+            </MasterPage>
+        );
     }
 }
 
