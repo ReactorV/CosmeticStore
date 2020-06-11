@@ -8,7 +8,12 @@ class CosmeticsListItem extends React.PureComponent {
 
     getClassNames = () => {
         return {
-            component: baseClassName
+            component: baseClassName,
+            info: `${baseClassName}__info`,
+            brand: `${baseClassName}__brand`,
+            price: `${baseClassName}__price`,
+            description: `${baseClassName}__description`,
+            icon: `${baseClassName}__icon`
         }
     };
 
@@ -17,12 +22,24 @@ class CosmeticsListItem extends React.PureComponent {
 
         const classNames = this.getClassNames();
 
+        //const iconOutput = this.renderIcon(classNames);
+
             return (
                 <div className={classNames.component}>
-                    <div>{item.brand}</div>
-                    <div>{item.description}</div>
-                    <div>{item.price}</div>
-                    <div>{item.apiImage}</div>
+                    <div className={classNames.icon}>
+                        <img src={item.apiImage} alt=''/>
+                    </div>
+                    <div className={classNames.info}>
+                        <div className={classNames.brand}>
+                            {item.brand}
+                        </div>
+                        <div className={classNames.price}>
+                            {item.price}
+                        </div>
+                        <div className={classNames.description}>
+                            {item.description}
+                        </div>
+                    </div>
                 </div>
             );
     }
