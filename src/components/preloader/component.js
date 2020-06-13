@@ -1,6 +1,6 @@
 import React from 'react';
 
-import spinner from 'icons/spinner.svg';
+import spinner from '../../icons/spinner.svg';
 import './index.scss';
 
 const baseClassName = 'preloader';

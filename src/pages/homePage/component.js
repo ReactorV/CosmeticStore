@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Preloader from '../../components/preloader';
 import CosmeticsList from '../../components/cosmetics-list';
 //import CartTable from '../../components/cart-table';
 import cosmeticsModel from '../../common/models/cosmeticsModel';
@@ -14,9 +15,15 @@ class HomePage extends React.PureComponent {
     }
 
     render () {
-        const { cosmetics } = this.props;
+        const { cosmetics, loading } = this.props;
 
         const cosmeticsData = cosmeticsModel(cosmetics);
+
+        if (loading) {
+            return (
+                <Preloader />
+            )
+        }
 
         return(
             <CosmeticsList cosmetics={cosmeticsData} />

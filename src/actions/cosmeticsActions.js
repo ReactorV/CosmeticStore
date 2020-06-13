@@ -5,6 +5,12 @@ const cosmeticsLoaded = (newCosmetics) => {
     }
 };
 
+const cosmeticsRequest = () => {
+    return {
+        type: 'FETCH_COSMETICS_REQUEST'
+    }
+};
+
 const cosmeticsError = (error) => {
     return {
         type: 'FETCH_COSMETICS_ERROR',
@@ -13,6 +19,8 @@ const cosmeticsError = (error) => {
 };
 
 const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
+    dispatch(cosmeticsRequest());
+
     return cosmeticsStoreService.getCosmetics()
         .then(async (response) => {
             const reader = response.body.getReader();

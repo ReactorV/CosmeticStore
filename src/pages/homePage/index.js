@@ -7,9 +7,10 @@ import withCosmeticsStoreService from '../../components/hoc/withCosmeticsStoreSr
 import { fetchCosmetics } from '../../actions/cosmeticsActions';
 import utils from '../../common/utils';
 
-const mapStateToProps = ({ cosmetics }) => {
+const mapStateToProps = ({ cosmetics, loading }) => {
     return {
-        cosmetics
+        cosmetics,
+        loading
     }
 };
 
