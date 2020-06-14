@@ -35,7 +35,8 @@ module.exports = (env={}) => {
         mode: isDev ? 'development' : isProd && 'production',
 
         output: {
-            filename: isProd ? 'main-[hash:3].js' : undefined
+            filename: isProd ? 'main-[hash:3].js' : undefined,
+            publicPath: '/'
         },
 
         module: {
@@ -87,7 +88,8 @@ module.exports = (env={}) => {
         plugins: getPlugins(),
 
         devServer: {
-            open: true
+            open: true,
+            historyApiFallback: true
         }
     }
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-//import CartPage  from '../../pages/cart-page';
+import CartPage  from '../../pages/cartPage';
 import HomePage from '../../pages/homePage';
 import MasterPage from '../master-page';
+import withCosmeticsStoreService from '../hoc/withCosmeticsStoreSrvice';
 
 import './index.scss';
 
@@ -14,10 +15,11 @@ class App extends React.PureComponent {
                    <Route
                        path="/"
                        component={this.getPageComponent(<HomePage />)}
+                       exact={true}
                    />
                    <Route
                        path="/cart"
-                       component={HomePage}
+                       component={this.getPageComponent(<CartPage />)}
                    />
                </Switch>
            );
@@ -32,4 +34,4 @@ class App extends React.PureComponent {
     }
 }
 
-export default App;
+export default withCosmeticsStoreService()(App);

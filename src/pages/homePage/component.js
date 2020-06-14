@@ -2,7 +2,7 @@ import React from 'react';
 
 import Preloader from '../../components/preloader';
 import CosmeticsList from '../../components/cosmetics-list';
-//import CartTable from '../../components/cart-table';
+import CartTable from '../../components/cart-table';
 import cosmeticsModel from '../../common/models/cosmeticsModel';
 
 class HomePage extends React.PureComponent {
@@ -26,7 +26,10 @@ class HomePage extends React.PureComponent {
         }
 
         return(
-            <CosmeticsList cosmetics={cosmeticsData} />
+            <>
+                <CosmeticsList cosmetics={cosmeticsData} />
+                <CartTable />
+            </>
         );
 
     }
