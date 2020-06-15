@@ -1,0 +1,23 @@
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px 10px 20px;
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: purple;
+    }
+
+    &__details {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+
+        > * {
+            margin-left: 10px;
+        }
+    }
+}

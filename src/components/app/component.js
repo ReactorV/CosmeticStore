@@ -4,25 +4,29 @@ import { Switch, Route } from 'react-router-dom';
 import CartPage  from '../../pages/cartPage';
 import HomePage from '../../pages/homePage';
 import MasterPage from '../master-page';
+import CartHeader from '../cart-header';
 import withCosmeticsStoreService from '../hoc/withCosmeticsStoreSrvice';
 
 import './index.scss';
 
 class App extends React.PureComponent {
     render() {
-       return(
-               <Switch>
-                   <Route
-                       path="/"
-                       component={this.getPageComponent(<HomePage />)}
-                       exact={true}
-                   />
-                   <Route
-                       path="/cart"
-                       component={this.getPageComponent(<CartPage />)}
-                   />
-               </Switch>
-           );
+        return(
+            <>
+                <CartHeader numItems={2} total={123} />
+                <Switch>
+                    <Route
+                        path="/"
+                        component={this.getPageComponent(<HomePage />)}
+                        exact={true}
+                    />
+                    <Route
+                        path="/cart"
+                        component={this.getPageComponent(<CartPage />)}
+                    />
+                </Switch>
+            </>
+        );
     }
 
     getPageComponent = (component) => () => {

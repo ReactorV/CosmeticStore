@@ -13,7 +13,8 @@ class CosmeticsListItem extends React.PureComponent {
             brand: `${baseClassName}__brand`,
             price: `${baseClassName}__price`,
             description: `${baseClassName}__description`,
-            icon: `${baseClassName}__icon`
+            icon: `${baseClassName}__icon`,
+            button: `${baseClassName}__button`
         }
     };
 
@@ -23,6 +24,7 @@ class CosmeticsListItem extends React.PureComponent {
         const classNames = this.getClassNames();
 
         const itemPrice = `$${item.price}`;
+        const buttonClassName = `btn btn-info ${classNames.button}`;
 
             return (
                 <div className={classNames.component}>
@@ -39,6 +41,9 @@ class CosmeticsListItem extends React.PureComponent {
                         <div className={classNames.description}>
                             {item.description}
                         </div>
+                        <button className={buttonClassName}>
+                            Add to cart
+                        </button>
                     </div>
                 </div>
             );
