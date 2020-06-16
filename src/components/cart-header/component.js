@@ -11,8 +11,9 @@ class CartHeader extends React.PureComponent {
             component: baseClassName,
             title: `${baseClassName}__title`,
             details: `${baseClassName}__details`,
-            detailsItems: `${baseClassName}__details-items`,
-            detailsTotal: `${baseClassName}__details-total`
+            detailsCart: `${baseClassName}__details-cart`,
+            detailsCartItems: `${baseClassName}__details-cart-items`,
+            detailsCartTotal: `${baseClassName}__details-cart-total`
         }
     };
 
@@ -29,12 +30,16 @@ class CartHeader extends React.PureComponent {
                     Cosmetics Store
                 </div>
                 <div className={classNames.details}>
-                    <div className={classNames.detailsItems}>
-                        {numItems} items
-                    </div>
-                    <div className={classNames.detailsTotal}>
-                        {totalPrice}
-                    </div>
+                    <a href="#" className={classNames.detailsCart}>
+                        <i className={'fa fa-shopping-cart'} />
+                        <div className={classNames.detailsCartItems}>
+                            {numItems} items
+                        </div>
+                        <div className={classNames.detailsCartTotal}>
+                            {totalPrice}
+                        </div>
+                    </a>
+
                 </div>
             </div>
         );

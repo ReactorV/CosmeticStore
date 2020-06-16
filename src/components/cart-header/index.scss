@@ -16,8 +16,22 @@
         align-items: center;
         font-size: 18px;
 
-        > * {
-            margin-left: 10px;
+        &-cart {
+            display: flex;
+            align-items: center;
+            color: purple;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            > * {
+                margin-left: 10px;
+            }
+
+            .fa {
+                font-size: 30px;
+            }
         }
     }
 }
