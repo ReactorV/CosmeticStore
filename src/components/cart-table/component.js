@@ -36,15 +36,15 @@ class CartTable extends React.PureComponent {
                     <div className={classNames.grid}>$20</div>
                     <div className={classNames.gridButtons}>
                         <button
-                            className="btn btn-outline-danger btn-sm float-right">
+                            className="btn btn-outline-danger btn-sm">
                             <i className="fa fa-trash-o" />
                         </button>
                         <button
-                            className="btn btn-outline-success btn-sm float-right">
+                            className="btn btn-outline-success btn-sm">
                             <i className="fa fa-plus-circle" />
                         </button>
                         <button
-                            className="btn btn-outline-warning btn-sm float-right">
+                            className="btn btn-outline-warning btn-sm">
                             <i className="fa fa-minus-circle" />
                         </button>
                     </div>

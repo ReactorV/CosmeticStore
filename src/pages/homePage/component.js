@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Preloader from '../../components/preloader';
+import ErrorIndicator from '../../components/error-indicator';
 import CosmeticsList from '../../components/cosmetics-list';
 import CartTable from '../../components/cart-table';
 import cosmeticsModel from '../../common/models/cosmeticsModel';
@@ -15,7 +16,7 @@ class HomePage extends React.PureComponent {
     }
 
     render () {
-        const { cosmetics, loading } = this.props;
+        const { cosmetics, loading, error } = this.props;
 
         const cosmeticsData = cosmeticsModel(cosmetics);
 
@@ -25,7 +26,13 @@ class HomePage extends React.PureComponent {
             )
         }
 
-        return(
+        if (error) {
+            return (
+                <ErrorIndicator />
+            )
+        }
+
+        return (
             <>
                 <CosmeticsList cosmetics={cosmeticsData} />
                 <CartTable />

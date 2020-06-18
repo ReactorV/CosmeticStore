@@ -2,9 +2,13 @@ import React from 'react';
 
 import './index.scss';
 
+const baseClassName = 'error-indicator';
+
 const ErrorIndicator = () => {
     return (
-        <div>Error! Something went wrong!</div>
+        <div className={baseClassName}>
+            Error! Something went wrong!
+        </div>
     );
 };
 
