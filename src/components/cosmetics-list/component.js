@@ -14,7 +14,7 @@ class CosmeticsList extends React.PureComponent {
     };
 
     render() {
-        const { cosmetics = [], error } = this.props;
+        const { cosmetics = [] } = this.props;
 
         const classNames = this.getClassNames();
 
