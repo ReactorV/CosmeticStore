@@ -26,12 +26,7 @@ class CartTableItem extends React.PureComponent {
         const classNames = this.getClassNames();
 
             return (
-                <div className={classNames.component} key={index}>
-                    <div className={classNames.grid}>#</div>
-                    <div className={classNames.grid}>Item</div>
-                    <div className={classNames.grid}>Count</div>
-                    <div className={classNames.grid}>Price</div>
-                    <div className={classNames.grid}>Action</div>
+                <div className={classNames.component}>
                     <div className={classNames.grid}>{index + 1}</div>
                     <div className={classNames.grid}>{name}</div>
                     <div className={classNames.grid}>{count}</div>

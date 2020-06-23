@@ -11,6 +11,8 @@ class CartTable extends React.PureComponent {
         return {
             component: baseClassName,
             caption: `${baseClassName}__caption`,
+            header: `${baseClassName}__header`,
+            grid: `${baseClassName}__grid`,
             total: `${baseClassName}__total`
         }
     };
@@ -35,6 +37,13 @@ class CartTable extends React.PureComponent {
             <div className={classNames.component}>
                 <div className={classNames.caption}>
                     CartTable
+                </div>
+                <div className={classNames.header}>
+                    <div className={classNames.grid}>#</div>
+                    <div className={classNames.grid}>Item</div>
+                    <div className={classNames.grid}>Count</div>
+                    <div className={classNames.grid}>Price</div>
+                    <div className={classNames.grid}>Action</div>
                 </div>
                 {cartTableItemsOutput}
                 <div className={classNames.total}>{totalSum}</div>

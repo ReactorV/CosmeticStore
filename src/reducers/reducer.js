@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_COSMETICS_REQUEST':
             return {
+                ...state,
                 cosmetics: [],
                 loading: true,
                 error: null,
@@ -30,6 +31,7 @@ const reducer = (state = initialState, action) => {
 
         case 'FETCH_COSMETICS_SUCCESS':
             return {
+                ...state,
                 cosmetics: action.cosmetics,
                 loading: false,
                 error: null,
@@ -37,6 +39,7 @@ const reducer = (state = initialState, action) => {
 
         case 'FETCH_COSMETICS_ERROR':
             return {
+                ...state,
                 cosmetics: [],
                 loading: false,
                 error: action.error

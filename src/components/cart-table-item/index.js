@@ -10,10 +10,19 @@ const mapStateToProps = ({ onIncrease, onDecrease, onDelete }) => {
     }
 };
 
-/*const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
     return {
+        onIncrease: (id) => {
+            console.log(`onIncrease ${id}`)
+        },
+        onDecrease: (id) => {
+            console.log(`onDecrease ${id}`)
+        },
+        onDelete: (id) => {
+            console.log(`onDelete ${id}`)
+        },
 
     }
-};*/
+};
 
-export default connect(mapStateToProps, null)(CartTableItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CartTableItem);

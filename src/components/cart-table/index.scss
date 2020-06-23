@@ -10,6 +10,24 @@
         padding: 0 40px;
     }
 
+    &__header {
+        padding: 0 40px;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 3fr 1fr 1fr 2fr;
+        max-width: 1200px;
+        font-weight: 600;
+    }
+
+    &__grid {
+        text-align: center;
+        padding: 8px;
+        font-size: 16px;
+        line-height: 30px;
+        border-top: 1px solid gainsboro;
+        border-bottom: 1px solid gainsboro;
+    }
+
     &__total {
         display: flex;
         justify-content: flex-end;
