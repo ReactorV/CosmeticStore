@@ -41,7 +41,10 @@ class CosmeticsListItem extends React.PureComponent {
                         <div className={classNames.description}>
                             {item.description}
                         </div>
-                        <button className={buttonClassName}>
+                        <button
+                            className={buttonClassName}
+                            onClick={addCartItem}
+                        >
                             Add to cart
                         </button>
                     </div>

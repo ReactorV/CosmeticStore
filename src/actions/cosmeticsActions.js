@@ -18,6 +18,13 @@ const cosmeticsError = (error) => {
     }
 };
 
+const addCartItem = (id) => {
+    return {
+        type: 'ADD_CART_ITEM',
+        itemId: id
+    }
+};
+
 const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
     dispatch(cosmeticsRequest());
 
@@ -68,5 +75,6 @@ const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
 };
 
 export {
-    fetchCosmetics
+    fetchCosmetics,
+    addCartItem
 }

@@ -24,10 +24,10 @@ class CartTable extends React.PureComponent {
         } = this.props;
 
         const classNames = this.getClassNames();
-
+debugger
         const cartTableItemsOutput = items.map((item, index) => {
             return (
-                <CartTableItem item={item} index={index} key={index}/>
+                <CartTableItem item={item} index={index} key={index} />
             );
         });
 
@@ -42,7 +42,7 @@ class CartTable extends React.PureComponent {
                     <div className={classNames.grid}>#</div>
                     <div className={classNames.grid}>Item</div>
                     <div className={classNames.grid}>Count</div>
-                    <div className={classNames.grid}>Price</div>
+                    <div className={classNames.grid}>Total</div>
                     <div className={classNames.grid}>Action</div>
                 </div>
                 {cartTableItemsOutput}

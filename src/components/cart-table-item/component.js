@@ -5,6 +5,25 @@ import './index.scss';
 const baseClassName = 'cart-table-item';
 
 class CartTableItem extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        const item = this.props.item;
+
+        this.state = {
+            item: item
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        debugger
+        if (prevProps.item !== this.props.item) {
+            this.setState({
+                item: this.props.item
+            });
+        }
+    }
+
     getClassNames = () => {
         return {
             component: baseClassName,
@@ -15,12 +34,12 @@ class CartTableItem extends React.PureComponent {
 
     render() {
         const {
-            item,
             index,
             onIncrease,
             onDecrease,
             onDelete
         } = this.props;
+        const { item } = this.state;
         const { count, price, name, id } = item;
 
         const classNames = this.getClassNames();
