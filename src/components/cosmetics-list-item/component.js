@@ -19,7 +19,7 @@ class CosmeticsListItem extends React.PureComponent {
     };
 
     render() {
-        const { item } = this.props;
+        const { item, onAddedCartItem } = this.props;
 
         const classNames = this.getClassNames();
 
@@ -43,7 +43,7 @@ class CosmeticsListItem extends React.PureComponent {
                         </div>
                         <button
                             className={buttonClassName}
-                            onClick={addCartItem}
+                            onClick={onAddedCartItem}
                         >
                             Add to cart
                         </button>

@@ -14,7 +14,7 @@ class CosmeticsList extends React.PureComponent {
     };
 
     render() {
-        const { cosmetics = [] } = this.props;
+        const { cosmetics = [], onIncrease } = this.props;
 
         const classNames = this.getClassNames();
 
@@ -22,7 +22,11 @@ class CosmeticsList extends React.PureComponent {
 
         const  cosmeticsOutput = cosmetics.map((item, index) => {
             return (
-                <CosmeticsListItem item={item} key={index}/>
+                <CosmeticsListItem
+                    item={item}
+                    onAddedCartItem={() => onIncrease(item.id)}
+                    key={index}
+                />
             );
         });
 

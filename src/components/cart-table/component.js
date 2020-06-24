@@ -24,7 +24,7 @@ class CartTable extends React.PureComponent {
         } = this.props;
 
         const classNames = this.getClassNames();
-debugger
+
         const cartTableItemsOutput = items.map((item, index) => {
             return (
                 <CartTableItem item={item} index={index} key={index} />

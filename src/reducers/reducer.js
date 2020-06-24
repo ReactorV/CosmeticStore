@@ -14,6 +14,8 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    console.log(action.type);
+
     switch (action.type) {
         case 'FETCH_COSMETICS_REQUEST':
             return {
@@ -43,18 +45,20 @@ const reducer = (state = initialState, action) => {
             const itemId = action.itemId;
             const item = state.cosmetics.find(item => item.id === itemId);
             const cartItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === itemId);
+
             const newItem = {
                 id: item.id,
-                name: item.name,
+                name: item.brand,
                 price: item.price,
                 count: 1
             };
+
             let cartItem = state.cartItems.find(cartItem => cartItem.id === itemId);
             let cartItemsAdded;
 
             if (cartItem) {
                 const totalPriceItem = Number(cartItem.price) + Number(item.price);
-debugger
+
                 cartItem.count = cartItem.count + 1;
                 cartItem.price = totalPriceItem.toFixed(2);
 
@@ -65,7 +69,7 @@ debugger
                 ];
             } else {
                 cartItem = newItem;
-                cartItemsAdded = [...state.cartItems, item];
+                cartItemsAdded = [...state.cartItems, newItem];
             }
 
             return {
