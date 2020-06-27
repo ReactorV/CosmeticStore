@@ -2,14 +2,7 @@ const initialState = {
     cosmetics: [],
     loading: false,
     error: null,
-    cartItems: [
-        {
-            id: 11,
-            name: 'maybelline',
-            price: 10,
-            count: 1
-        }
-    ],
+    cartItems: [],
     total: 120
 };
 
@@ -77,6 +70,29 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.error,
                 cartItems: cartItemsAdded
+            };
+
+        case 'DECREASE_CART_ITEM':
+            const decreasedItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === action.itemId);
+            const decreasedItem = state.cartItems.find(cartItem => cartItem.id === action.itemId);
+            const newCartItems = state.cartItems;
+
+            if (decreasedItem.count > 1) {
+                const item = state.cosmetics.find(item => item.id === action.itemId);
+                debugger
+                decreasedItem.count = decreasedItem.count - 1;
+                decreasedItem.price = decreasedItem.price - item.price;
+
+                newCartItems.splice(decreasedItemIndex, 1, decreasedItem);
+            } else {
+                newCartItems.splice(decreasedItemIndex, 1);
+            }
+
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+                cartItems: newCartItems
             };
 
         default: return state;

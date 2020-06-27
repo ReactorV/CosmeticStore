@@ -25,6 +25,13 @@ const addCartItem = (id) => {
     }
 };
 
+const decreaseCartItem = (id) => {
+    return {
+        type: 'DECREASE_CART_ITEM',
+        itemId: id
+    }
+};
+
 const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
     dispatch(cosmeticsRequest());
 
@@ -76,5 +83,6 @@ const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
 
 export {
     fetchCosmetics,
-    addCartItem
+    addCartItem,
+    decreaseCartItem
 }

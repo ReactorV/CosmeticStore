@@ -5,7 +5,6 @@ import './index.scss';
 const baseClassName = 'cart-table';
 
 class CartTable extends React.PureComponent {
-
     getClassNames = () => {
         return {
             component: baseClassName,
@@ -28,7 +27,7 @@ class CartTable extends React.PureComponent {
         } = this.props;
 
         const classNames = this.getClassNames();
-
+debugger
         const cartTableItemsOutput = items.map((item, index) => {
             return (
                 <div className={classNames.gridRow} key={item.id}>
