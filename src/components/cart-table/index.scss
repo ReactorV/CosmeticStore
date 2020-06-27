@@ -24,8 +24,30 @@
         padding: 8px;
         font-size: 16px;
         line-height: 30px;
-        border-top: 1px solid gainsboro;
         border-bottom: 1px solid gainsboro;
+
+        &-row {
+            padding: 0 40px;
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr 3fr 1fr 1fr 2fr;
+            max-width: 1200px;
+        }
+
+        &-buttons {
+            display: flex;
+            justify-content: center;
+            padding: 8px;
+            border-bottom: 1px solid gainsboro;
+
+            > * {
+                margin-right: 10px;
+            }
+
+            button {
+                min-width: 30px;
+            }
+        }
     }
 
     &__total {

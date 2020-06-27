@@ -1,6 +1,5 @@
 import React from 'react';
 
-import CartTableItem from '../cart-table-item';
 import './index.scss';
 
 const baseClassName = 'cart-table';
@@ -13,6 +12,8 @@ class CartTable extends React.PureComponent {
             caption: `${baseClassName}__caption`,
             header: `${baseClassName}__header`,
             grid: `${baseClassName}__grid`,
+            gridRow: `${baseClassName}__grid-row`,
+            gridButtons: `${baseClassName}__grid-buttons`,
             total: `${baseClassName}__total`
         }
     };
@@ -21,13 +22,38 @@ class CartTable extends React.PureComponent {
         const {
             items = [],
             total = 0,
+            onIncrease,
+            onDecrease,
+            onDelete
         } = this.props;
 
         const classNames = this.getClassNames();
 
         const cartTableItemsOutput = items.map((item, index) => {
             return (
-                <CartTableItem item={item} index={index} key={index} />
+                <div className={classNames.gridRow} key={item.id}>
+                    <div className={classNames.grid}>{index + 1}</div>
+                    <div className={classNames.grid}>{item.name}</div>
+                    <div className={classNames.grid}>{item.count}</div>
+                    <div className={classNames.grid}>{item.price}</div>
+                    <div className={classNames.gridButtons}>
+                        <button
+                            onClick={() => onDelete(item.id)}
+                            className="btn btn-outline-danger btn-sm">
+                            <i className="fa fa-trash-o" />
+                        </button>
+                        <button
+                            onClick={() => onIncrease(item.id)}
+                            className="btn btn-outline-success btn-sm">
+                            <i className="fa fa-plus-circle" />
+                        </button>
+                        <button
+                            onClick={() => onDecrease(item.id)}
+                            className="btn btn-outline-warning btn-sm">
+                            <i className="fa fa-minus-circle" />
+                        </button>
+                    </div>
+                </div>
             );
         });
 

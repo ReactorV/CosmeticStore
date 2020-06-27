@@ -2,6 +2,8 @@ import CartTable from './component';
 
 import { connect } from 'react-redux';
 
+import { addCartItem } from '../../actions/cosmeticsActions';
+
 const mapStateToProps = ({ cartItems, total }) => {
     return {
         items: cartItems,
@@ -9,4 +11,19 @@ const mapStateToProps = ({ cartItems, total }) => {
     };
 };
 
-export default connect(mapStateToProps, null)(CartTable);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onIncrease: (id) => dispatch(addCartItem(id)),
+        onDecrease: (id) => {
+            console.log(`onDecrease ${id}`)
+        },
+        onDelete: (id) => {
+            console.log(`onDelete ${id}`)
+        },
+
+    }
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartTable);
