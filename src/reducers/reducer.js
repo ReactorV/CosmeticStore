@@ -75,17 +75,24 @@ const reducer = (state = initialState, action) => {
         case 'DECREASE_CART_ITEM':
             const decreasedItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === action.itemId);
             const decreasedItem = state.cartItems.find(cartItem => cartItem.id === action.itemId);
-            const newCartItems = state.cartItems;
+            let newCartItems;
 
             if (decreasedItem.count > 1) {
                 const item = state.cosmetics.find(item => item.id === action.itemId);
-                debugger
-                decreasedItem.count = decreasedItem.count - 1;
-                decreasedItem.price = decreasedItem.price - item.price;
 
-                newCartItems.splice(decreasedItemIndex, 1, decreasedItem);
+                decreasedItem.count = decreasedItem.count - 1;
+                decreasedItem.price = (decreasedItem.price - item.price).toFixed(2);
+
+                newCartItems = [
+                    ...state.cartItems.slice(0, decreasedItemIndex),
+                    decreasedItem,
+                    ...state.cartItems.slice(decreasedItemIndex + 1),
+                ]
             } else {
-                newCartItems.splice(decreasedItemIndex, 1);
+                newCartItems = [
+                    ...state.cartItems.slice(0, decreasedItemIndex),
+                    ...state.cartItems.slice(decreasedItemIndex + 1),
+                ]
             }
 
             return {

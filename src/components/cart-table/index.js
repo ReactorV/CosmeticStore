@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { addCartItem, decreaseCartItem } from '../../actions/cosmeticsActions';
 
 const mapStateToProps = ({ cartItems, total, onIncrease, onDecrease, onDelete }) => {
-    debugger
     return {
         items: cartItems,
         total,
