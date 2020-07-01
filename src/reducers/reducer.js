@@ -6,9 +6,11 @@ const initialState = {
     total: 120
 };
 
-const reducer = (state = initialState, action) => {
-    console.log(action.type);
+const updateCartItem = () => {
 
+};
+
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_COSMETICS_REQUEST':
             return {
@@ -39,13 +41,6 @@ const reducer = (state = initialState, action) => {
             const item = state.cosmetics.find(item => item.id === itemId);
             const cartItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === itemId);
 
-            const newItem = {
-                id: item.id,
-                name: item.brand,
-                price: item.price,
-                count: 1
-            };
-
             let cartItem = state.cartItems.find(cartItem => cartItem.id === itemId);
             let cartItemsAdded;
 
@@ -61,7 +56,13 @@ const reducer = (state = initialState, action) => {
                     ...state.cartItems.slice(cartItemIndex + 1)
                 ];
             } else {
-                cartItem = newItem;
+                const newItem = {
+                    id: item.id,
+                    name: item.brand,
+                    price: item.price,
+                    count: 1
+                };
+
                 cartItemsAdded = [...state.cartItems, newItem];
             }
 
@@ -100,6 +101,21 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.error,
                 cartItems: newCartItems
+            };
+
+        case 'DELETE_CART_ITEMS':
+            const deletedItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === action.itemId);
+
+            const updatedCartItems = [
+                ...state.cartItems.slice(0, deletedItemIndex),
+                ...state.cartItems.slice(deletedItemIndex + 1),
+            ];
+
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+                cartItems: updatedCartItems
             };
 
         default: return state;

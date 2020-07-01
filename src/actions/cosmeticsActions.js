@@ -32,6 +32,13 @@ const decreaseCartItem = (id) => {
     }
 };
 
+const deleteCartItems = (id) => {
+    return {
+        type: 'DELETE_CART_ITEMS',
+        itemId: id
+    }
+};
+
 const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
     dispatch(cosmeticsRequest());
 
@@ -84,5 +91,6 @@ const fetchCosmetics = (cosmeticsStoreService) => () => (dispatch) => {
 export {
     fetchCosmetics,
     addCartItem,
-    decreaseCartItem
+    decreaseCartItem,
+    deleteCartItems
 }
