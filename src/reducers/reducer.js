@@ -6,8 +6,22 @@ const initialState = {
     total: 120
 };
 
-const updateCartItem = () => {
+const updateCartItem = (item, cartItem, quantity) => {
+    const {
+        id = item.id,
+        name = item.name,
+        price = 0,
+        count = 0
+    } = cartItem;
 
+    const totalPrice = Number(price) + Number(item.price) * quantity;
+
+    return {
+        id,
+        name,
+        price: totalPrice.toFixed(2),
+        count: count + quantity
+    }
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,31 +53,20 @@ const reducer = (state = initialState, action) => {
         case 'ADD_CART_ITEM':
             const itemId = action.itemId;
             const item = state.cosmetics.find(item => item.id === itemId);
+            const cartItem = state.cartItems.find(cartItem => cartItem.id === itemId) || {};
             const cartItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === itemId);
 
-            let cartItem = state.cartItems.find(cartItem => cartItem.id === itemId);
             let cartItemsAdded;
+            const newCartItem = updateCartItem(item, cartItem, 1);
 
             if (cartItem) {
-                const totalPriceItem = Number(cartItem.price) + Number(item.price);
-
-                cartItem.count = cartItem.count + 1;
-                cartItem.price = totalPriceItem.toFixed(2);
-
                 cartItemsAdded = [
                     ...state.cartItems.slice(0, cartItemIndex),
-                    cartItem,
+                    newCartItem,
                     ...state.cartItems.slice(cartItemIndex + 1)
                 ];
             } else {
-                const newItem = {
-                    id: item.id,
-                    name: item.brand,
-                    price: item.price,
-                    count: 1
-                };
-
-                cartItemsAdded = [...state.cartItems, newItem];
+                cartItemsAdded = [...state.cartItems, newCartItem];
             }
 
             return {
@@ -80,13 +83,11 @@ const reducer = (state = initialState, action) => {
 
             if (decreasedItem.count > 1) {
                 const item = state.cosmetics.find(item => item.id === action.itemId);
-
-                decreasedItem.count = decreasedItem.count - 1;
-                decreasedItem.price = (decreasedItem.price - item.price).toFixed(2);
+                const newCartItem = updateCartItem(item, decreasedItem, -1);
 
                 newCartItems = [
                     ...state.cartItems.slice(0, decreasedItemIndex),
-                    decreasedItem,
+                    newCartItem,
                     ...state.cartItems.slice(decreasedItemIndex + 1),
                 ]
             } else {
