@@ -24,6 +24,25 @@ const updateCartItem = (item, cartItem, quantity) => {
     }
 };
 
+const updateCartItems = (cartItems, item, index) => {
+    if (item.count === 0) {
+        return [
+            ...cartItems.slice(0, index),
+            ...cartItems.slice(index + 1)
+        ];
+    }
+
+    if (item) {
+        return [
+            ...cartItems.slice(0, index),
+            item,
+            ...cartItems.slice(index + 1)
+        ];
+    } else {
+        return [...cartItems, item];
+    }
+};
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_COSMETICS_REQUEST':
@@ -56,67 +75,44 @@ const reducer = (state = initialState, action) => {
             const cartItem = state.cartItems.find(cartItem => cartItem.id === itemId) || {};
             const cartItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === itemId);
 
-            let cartItemsAdded;
-            const newCartItem = updateCartItem(item, cartItem, 1);
-
-            if (cartItem) {
-                cartItemsAdded = [
-                    ...state.cartItems.slice(0, cartItemIndex),
-                    newCartItem,
-                    ...state.cartItems.slice(cartItemIndex + 1)
-                ];
-            } else {
-                cartItemsAdded = [...state.cartItems, newCartItem];
-            }
+            const addedCartItem = updateCartItem(item, cartItem, 1);
+            const addedCartItems = updateCartItems(state.cartItems, addedCartItem, cartItemIndex);
 
             return {
                 ...state,
                 loading: false,
                 error: action.error,
-                cartItems: cartItemsAdded
+                cartItems: addedCartItems
             };
 
         case 'DECREASE_CART_ITEM':
+            const cosmeticItem = state.cosmetics.find(item => item.id === action.itemId);
             const decreasedItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === action.itemId);
             const decreasedItem = state.cartItems.find(cartItem => cartItem.id === action.itemId);
-            let newCartItems;
 
-            if (decreasedItem.count > 1) {
-                const item = state.cosmetics.find(item => item.id === action.itemId);
-                const newCartItem = updateCartItem(item, decreasedItem, -1);
-
-                newCartItems = [
-                    ...state.cartItems.slice(0, decreasedItemIndex),
-                    newCartItem,
-                    ...state.cartItems.slice(decreasedItemIndex + 1),
-                ]
-            } else {
-                newCartItems = [
-                    ...state.cartItems.slice(0, decreasedItemIndex),
-                    ...state.cartItems.slice(decreasedItemIndex + 1),
-                ]
-            }
+            const decreasedCartItem = updateCartItem(cosmeticItem, decreasedItem, -1);
+            const decreasedCartItems = updateCartItems(state.cartItems, decreasedCartItem, decreasedItemIndex);
 
             return {
                 ...state,
                 loading: false,
                 error: action.error,
-                cartItems: newCartItems
+                cartItems: decreasedCartItems
             };
 
         case 'DELETE_CART_ITEMS':
-            const deletedItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === action.itemId);
+            const deletedCartItem = state.cartItems.find(cartItem => cartItem.id === action.itemId);
+            const deletedCartItemIndex = state.cartItems.findIndex(cartItem => cartItem.id === action.itemId);
 
-            const updatedCartItems = [
-                ...state.cartItems.slice(0, deletedItemIndex),
-                ...state.cartItems.slice(deletedItemIndex + 1),
-            ];
+            deletedCartItem.count = 0;
+
+            const deletedCartItems = updateCartItems(state.cartItems, deletedCartItem, deletedCartItemIndex);
 
             return {
                 ...state,
                 loading: false,
                 error: action.error,
-                cartItems: updatedCartItems
+                cartItems: deletedCartItems
             };
 
         default: return state;
