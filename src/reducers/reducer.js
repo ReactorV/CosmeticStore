@@ -1,9 +1,13 @@
 const initialState = {
-    cosmetics: [],
-    loading: false,
-    error: null,
-    cartItems: [],
-    total: 0
+    cosmeticsList: {
+        cosmetics: [],
+        loading: false,
+        error: null,
+    },
+    shoppingCart: {
+        cartItems: [],
+        total: 0
+    }
 };
 
 const updateCartItem = (item, cartItem, quantity) => {
@@ -44,7 +48,7 @@ const updateCartItems = (cartItems, item, index) => {
 };
 
 const updateOrder = (state, id, quantity) => {
-    const { cartItems, cosmetics } = state;
+    const { shoppingCart: { cartItems }, cosmeticsList: { cosmetics }} = state;
 
     const item = cosmetics.find(item => item.id === id);
     const cartItem = cartItems.find(cartItem => cartItem.id === id) || {};
@@ -54,16 +58,15 @@ const updateOrder = (state, id, quantity) => {
     const newCartItems = updateCartItems(cartItems, newCartItem, cartItemIndex);
 
     return {
-        ...state,
+        orderTotal: 0,
         cartItems: newCartItems
     };
 };
 
-const reducer = (state = initialState, action) => {
+const updateCosmeticsList = (state, action) => {
     switch (action.type) {
         case 'FETCH_COSMETICS_REQUEST':
             return {
-                ...state,
                 cosmetics: [],
                 loading: true,
                 error: null,
@@ -71,7 +74,6 @@ const reducer = (state = initialState, action) => {
 
         case 'FETCH_COSMETICS_SUCCESS':
             return {
-                ...state,
                 cosmetics: action.cosmetics,
                 loading: false,
                 error: null,
@@ -79,12 +81,17 @@ const reducer = (state = initialState, action) => {
 
         case 'FETCH_COSMETICS_ERROR':
             return {
-                ...state,
                 cosmetics: [],
                 loading: false,
                 error: action.error
             };
 
+        default: return state;
+    }
+};
+
+const updateCartTable = (state, action) => {
+    switch (action.type) {
         case 'ADD_CART_ITEM':
             return updateOrder(state, action.itemId, 1);
 
@@ -92,9 +99,32 @@ const reducer = (state = initialState, action) => {
             return updateOrder(state, action.itemId, -1);
 
         case 'DELETE_CART_ITEMS':
-            const deletedCartItem = state.cartItems.find(cartItem => cartItem.id === action.itemId);
+            const deletedCartItem = state.shoppingCart.cartItems.find(cartItem => cartItem.id === action.itemId);
 
             return updateOrder(state, action.itemId, -deletedCartItem.count);
+
+        default: return state;
+    }
+};
+
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'FETCH_COSMETICS_REQUEST':
+        case 'FETCH_COSMETICS_SUCCESS':
+        case 'FETCH_COSMETICS_ERROR':
+            return {
+                ...state,
+                cosmeticsList: updateCosmeticsList(state, action),
+            };
+
+        case 'ADD_CART_ITEM':
+        case 'DECREASE_CART_ITEM':
+        case 'DELETE_CART_ITEMS':
+            return {
+                ...state,
+                shoppingCart: updateCartTable(state, action)
+            };
 
         default: return state;
     }

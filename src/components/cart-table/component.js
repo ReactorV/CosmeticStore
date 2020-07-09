@@ -21,9 +21,9 @@ class CartTable extends React.PureComponent {
         const {
             items = [],
             total = 0,
+            onDelete,
             onIncrease,
-            onDecrease,
-            onDelete
+            onDecrease
         } = this.props;
 
         const classNames = this.getClassNames();

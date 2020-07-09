@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 
 import { addCartItem, decreaseCartItem, deleteCartItems } from '../../actions/cosmeticsActions';
 
-const mapStateToProps = ({ cartItems, total, onIncrease, onDecrease, onDelete }) => {
+const mapStateToProps = ({ shoppingCart: { cartItems, total }}) => {
     return {
         items: cartItems,
-        total,
-        onIncrease,
-        onDecrease,
-        onDelete
+        total
     };
 };
 

@@ -7,7 +7,7 @@ import withCosmeticsStoreService from '../../components/hoc/withCosmeticsStoreSr
 import { fetchCosmetics } from '../../actions/cosmeticsActions';
 import utils from '../../common/utils';
 
-const mapStateToProps = ({ cosmetics, loading, error }) => {
+const mapStateToProps = ({ cosmeticsList: { cosmetics, loading, error }}) => {
     return {
         cosmetics,
         loading,
