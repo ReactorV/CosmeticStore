@@ -20,7 +20,7 @@ class CartTable extends React.PureComponent {
     render () {
         const {
             items = [],
-            total = 0,
+            orderTotal = 0,
             onDelete,
             onIncrease,
             onDecrease
@@ -56,7 +56,7 @@ class CartTable extends React.PureComponent {
             );
         });
 
-        const totalSum = `Total: $${total}`;
+        const totalSum = `Total: $${orderTotal}`;
 
         return (
             <div className={classNames.component}>

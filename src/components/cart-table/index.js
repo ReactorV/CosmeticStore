@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import { addCartItem, decreaseCartItem, deleteCartItems } from '../../actions/cosmeticsActions';
 
-const mapStateToProps = ({ shoppingCart: { cartItems, total }}) => {
+const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal }}) => {
     return {
         items: cartItems,
-        total
+        orderTotal
     };
 };
 

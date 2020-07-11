@@ -6,7 +6,8 @@ const initialState = {
     },
     shoppingCart: {
         cartItems: [],
-        total: 0
+        orderTotal: 0,
+        numItems: 0
     }
 };
 
@@ -57,9 +58,13 @@ const updateOrder = (state, id, quantity) => {
     const newCartItem = updateCartItem(item, cartItem, quantity);
     const newCartItems = updateCartItems(cartItems, newCartItem, cartItemIndex);
 
+    const totalOrderSum = newCartItems.reduce((sum, item) => sum + Number(item.price), 0).toFixed(2);
+    const numItems = newCartItems.reduce((count, item) => count + item.count, 0);
+
     return {
-        orderTotal: 0,
-        cartItems: newCartItems
+        orderTotal: totalOrderSum,
+        cartItems: newCartItems,
+        numItems
     };
 };
 

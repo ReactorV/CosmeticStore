@@ -18,11 +18,11 @@ class CartHeader extends React.PureComponent {
     };
 
     render() {
-        const { numItems, total } = this.props;
+        const { numItems, orderTotal } = this.props;
 
         const classNames = this.getClassNames();
 
-        const totalPrice = `($${total})`;
+        const totalPrice = `($${orderTotal})`;
 
         return (
             <div className={classNames.component}>
