@@ -13,7 +13,7 @@ class App extends React.PureComponent {
     render() {
         return(
             <>
-                <CartHeader numItems={2} total={123} />
+                <CartHeader />
                 <Switch>
                     <Route
                         path="/"

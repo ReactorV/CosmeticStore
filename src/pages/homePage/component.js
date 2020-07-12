@@ -16,7 +16,16 @@ class HomePage extends React.PureComponent {
     }
 
     render () {
-        const { cosmetics, loading, error } = this.props;
+        const {
+            cosmetics,
+            loading,
+            error,
+            items,
+            orderTotal,
+            onDelete,
+            onIncrease,
+            onDecrease
+        } = this.props;
 
         const cosmeticsData = cosmeticsModel(cosmetics);
 
@@ -35,10 +44,15 @@ class HomePage extends React.PureComponent {
         return (
             <>
                 <CosmeticsList cosmetics={cosmeticsData} />
-                <CartTable />
+                <CartTable
+                    items={items}
+                    orderTotal={orderTotal}
+                    onDelete={onDelete}
+                    onIncrease={onIncrease}
+                    onDecrease={onDecrease}
+                />
             </>
         );
-
     }
 }
 

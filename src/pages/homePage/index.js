@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import withCosmeticsStoreService from '../../components/hoc/withCosmeticsStoreSrvice';
-import { fetchCosmetics } from '../../actions/cosmeticsActions';
+import { addCartItem, decreaseCartItem, deleteCartItems, fetchCosmetics } from '../../actions/cosmeticsActions';
 import utils from '../../common/utils';
 
-const mapStateToProps = ({ cosmeticsList: { cosmetics, loading, error }}) => {
+const mapStateToProps = ({ cosmeticsList: { cosmetics, loading, error },
+        shoppingCart: { cartItems, orderTotal }}) => {
     return {
         cosmetics,
         loading,
-        error
+        error,
+        items: cartItems,
+        orderTotal
     }
 };
 
@@ -19,7 +22,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { cosmeticsStoreService } = ownProps;
 
     return bindActionCreators({
-        fetchCosmetics: fetchCosmetics(cosmeticsStoreService)
+        fetchCosmetics: fetchCosmetics(cosmeticsStoreService),
+        onIncrease: addCartItem,
+        onDecrease: decreaseCartItem,
+        onDelete: deleteCartItems
     }, dispatch)
 
 };
